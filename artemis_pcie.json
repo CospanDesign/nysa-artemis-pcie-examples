@@ -1,0 +1,37 @@
+{
+    "BASE_DIR":"~/projects/ibuilder_project",
+    "board":"artemis_pcie",
+    "PROJECT_NAME":"example_project",
+    "TEMPLATE":"wishbone_template.json",
+    "SLAVES":{
+      "gpio1":{
+        "filename":"wb_gpio.v",
+        "bind":{
+          "gpio_out[1:0]":{
+            "loc":"led[1:0]",
+            "direction":"output"
+          },
+          "gpio_in[3:2]":{
+            "loc":"button[1:0]",
+            "direction":"input"
+          }
+        }
+      }
+
+    },
+    "build_flags":{
+         "xst":{
+             "flags":{
+                 "-define":"{DDR3_W0_CH DDR3_R0_CH DDR3_W2_CH DDR3_R2_CH}"
+             },
+             "-iobuf":"soft"
+        }
+    },
+    "dependencies":[
+			"ppfifo_pcie_host_interface.v",
+      "pcie_defines.v",
+      "pcie_bram_s6.v",
+      "axi_basic_tx_thrtl_ctl.v",
+      "gtpa1_dual_wrapper_tile.v"
+    ]
+}
